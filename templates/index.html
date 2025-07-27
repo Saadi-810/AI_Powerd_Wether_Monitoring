@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <header>🌫️ Weather & Chat (Black & White Theme)</header>
+  <nav>
+    <button id="dashboard-tab" class="active" aria-label="View Dashboard">📊 Dashboard</button>
+    <button id="chat-tab" aria-label="View Chat">💬 Chat</button>
+  </nav>
+  <section>
+    <div id="dashboard" class="active">
+      <div id="chart-container">
+        <canvas id="tempChart"></canvas>
+        <canvas id="humChart" style="margin-top: 30px;"></canvas>
+
+        <div id="mock-warning" class="mock-warning" style="display: none;">
+          Warning: Using mock sensor data due to DHT11 failure
+        </div>
+
+        <table id="data-table" aria-label="Recent sensor readings">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Temperature (°C)</th>
+              <th>Humidity (%)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="chat">
+      <div id="chat-area">
+        <div id="messages"></div>
+        <div id="chat-input">
+          <input
+            type="text"
+            id="message-input"
+            placeholder="Ask about the weather..."
+            aria-label="Chat input"
+          />
+          <button id="send-button">Send</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
